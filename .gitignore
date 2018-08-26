@@ -1,2 +1,5 @@
-/node_modules/
-.nodemon.json
+# dependencies
+/node_modules
+/bin
+#files
+nodemon.json
