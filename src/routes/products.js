@@ -11,8 +11,8 @@ router.post('/', checkAuth, upload.single('productImage'), products.add);
 
 router.get('/:id', products.findOne);
 
-router.patch('/:id', products.update);
+router.patch('/:id', checkAuth, products.update);
 
-router.delete('/:id', products.remove);
+router.delete('/:id', checkAuth, products.remove);
 
 module.exports = router;
