@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const User = require('../schemas/users.schemas');
 const utils = require('../services/utils.service');
-const authService = require('./auth.service');
+const authService = require('../services/auth.service');
 
 module.exports = {
   signup,
@@ -72,7 +72,7 @@ function findOne(req, res, next) {
 }
 
 function update(req, res, next) {
-  if (utils.passwordIsInvalid(req.body.password)) {
+  if (authService.passwordIsInvalid(req.body.password)) {
     res.status(401).json({ message: 'password must be at least six characters '});
   }
   return authService.hashPassword(req, res, next)

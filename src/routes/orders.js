@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const orderCtrl = require('../controllers/orders');
-const checkAuth = require('../core/auth/auth');
+const checkAuth = require('../middlewares/auth/auth');
 
 router.get('/', checkAuth, orderCtrl.find);
   

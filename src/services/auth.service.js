@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
-  hashPassword, signToken, comparePwd
+  hashPassword, signToken, comparePwd, passwordIsInvalid
 }
 
 function hashPassword(req) {
@@ -15,6 +15,10 @@ function comparePwd(input, hashed ) {
 
 function signToken(properties) {
   return jwt.sign(properties, process.env.JWT_KEY, { expiresIn: "1h" })
+}
+
+function passwordIsInvalid(password = '') {
+  return password.length <= 6;
 }
 
 
