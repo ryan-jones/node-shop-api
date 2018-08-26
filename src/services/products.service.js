@@ -33,7 +33,7 @@ function find(req, res, next) {
   .catch(err => next(err))
 }
 
-function findOne(req, res={}, next) {
+function findOne(req, res, next) {
   return Product
     .findById(req.params.id)
     .select('name price _id productImage')
@@ -48,11 +48,11 @@ function findOne(req, res={}, next) {
         }
       }
       res.status(200).json(product);
-    })
-    .catch(err => next(err))
+  })
+  .catch(err => next(err))
 }
 
-function add(req, res={}, next) {
+function add(req, res, next) {
   const newProduct = new Product(
     {
       _id: new mongoose.Types.ObjectId(),
@@ -80,7 +80,6 @@ function add(req, res={}, next) {
 function update(req, res, next) {
   const id = req.params.id;
   const { name, price } = req.body;
-
   return Product.findOneAndUpdate(id, { $set: { name, price } })
     .exec()
     .then(result => res.status(200).json({ data: result }))
