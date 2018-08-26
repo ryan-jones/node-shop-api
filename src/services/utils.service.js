@@ -1,6 +1,6 @@
 
-function createURL(path = '', schema = '', id = '') {
-  return `${path}/${schema}/${id}`;
+function createURL(schema = '', id = '') {
+  return `${process.env.dbURL}/${schema}/${id}`;
 }
 
 function passwordIsInvalid(password = '') {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../schemas/users.schemas');
-const utils = require('./utils.service');
+const utils = require('../services/utils.service');
 const authService = require('./auth.service');
 
 module.exports = {
@@ -89,7 +89,7 @@ function update(req, res, next) {
         user: { ...user._doc },
         request: {
           type: 'GET && PATCH && DELETE',
-          url: utils.createURL(process.env.dbURL, 'users', user._id)
+          url: utils.createURL('users', user._id)
         }
       })
     )
@@ -111,7 +111,7 @@ function createUserResponse(user) {
     password,
     request: {
       type: 'GET && PATCH && DELETE',
-      url: utils.createURL(process.env.dbURL, 'users', _id)
+      url: utils.createURL('users', _id)
     } 
   } 
 }

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Product = require('../schemas/products.schema');
-const utils = require('./utils.service');
+const utils = require('../services/utils.service');
 
 module.exports = {
 	find,
@@ -24,7 +24,7 @@ function find(req, res, next) {
         productImage: doc.productImage,
         url: {
           type: 'GET && PATCH',
-          path: utils.createURL(process.env.dbURL, 'products', doc._id)
+          path: utils.createURL('products', doc._id)
         }
       }))
     }
@@ -44,7 +44,7 @@ function findOne(req, res, next) {
         data: { ...doc._doc },
         request: {
           type: 'GET && PATCH',
-          url: utils.createURL(process.env.dbURL, 'products', doc._id)
+          url: utils.createURL('products', doc._id)
         }
       }
       res.status(200).json(product);
@@ -70,7 +70,7 @@ function add(req, res, next) {
           name,
           price,
           productImage,
-          url: utils.createURL(process.env.dbURL, 'products', _id)
+          url: utils.createURL('products', _id)
         }
       });
     })
